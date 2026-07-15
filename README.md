@@ -292,7 +292,7 @@ Hailstones in the model are assumed to be smooth ellipsoids unless *choose_lobes
 #### Hailstone Tumble Mode
 Hailstone tumbling may be turned on or off by *choose_tumble*. From Lin et al. (2024), running the hail model with non-spherical hailstone shapes without tumbling is likely to produce erroneously large hail sizes. Tumbling should be turned on unless spherical hailstones are manually specified.
 - *choose_tumble* = 1: Explicit hailstone tumbling from Lin et al. (2024). A randomly chosen adjustment to hailstone fall dimensions are applied to each hailstone at each time.
-- *choose_tumble* in range (0,1): Fixed adjustment from hailstone tumbling. The given *choose_tumble* is used as a fixed muliplier on hailstone cross-sectional area. Note that *choose_tumble*→0 are quite unrealistic and should not be used.
+- *choose_tumble* in range (0,1): Fixed adjustment from hailstone tumbling. The given *choose_tumble* is used as a fixed muliplier on hailstone cross-sectional area. Note that *choose_tumble*→0 is quite unrealistic and should not be chosen.
 - *choose_tumble* = 0: No hailstone tumbling. Hailstones are assumed to fall with their largest cross-sectional area normal to their fall direction. Note that this choice will generally overestimate hailstone collection of liquid water and is not recommended.
 
 **Note that *choose_tumble* = \{0,1\} have been flipped since their original implementation!**
