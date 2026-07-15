@@ -1,9 +1,11 @@
 # Hail Trajectory and Growth Model
 ## Overview
 
-This model simulates the trajectories, growth, and melting of non-spherical hailstones through a three-dimensional storm simulation. The original hail trajectory model was built and documented in Kumjian and Lombardo (2020). Lin et al. (2024) updated the model to simulate non-spherical hailstones. Spychalla et al. (in prep) further edited the hailstone growth and melting physics to better match the physical behavior of growing hailstones.
+This model simulates the trajectories, growth, and melting of non-spherical hailstones through a three-dimensional storm simulation. The original hail trajectory model was built and documented in Kumjian and Lombardo (2020). Lin et al. (2024) updated the model to simulate non-spherical hailstones. Spychalla et al. (in prep) further edited the hailstone growth and melting physics to better match the physical behavior of growing hailstones, translated the model into Python, and optimized for HPC.
 
 Current Model Version 1.0. Last Updated: July 15, 2026.
+
+If anything in the code or documentation is unclear or seems to have errors, please reach out to Lydia Spychalla at lks5850@psu.edu.
 
 ## Model Requirements
 The model is defined by trajectory_model.py.
@@ -67,10 +69,14 @@ The input parameter *sim_time* defines the name index of the initial storm file 
 The file paths of the storm dataset should be discoverable at {*path_to_storm*}/\*{*sim_time*}.{*filetype*}.
 
 If evolving trajectories are desired, the user should specify *evolving*=True. In this case, subsequent storm times should be discoverable at
-{*path_to_storm*}/\*{*sim_time*+1}.{*filetype*}
-{*path_to_storm*}/\*{*sim_time*+2}.{*filetype*}
+
+{*path_to_storm*}/\*{*sim_time*+1}.{*filetype*},
+
+{*path_to_storm*}/\*{*sim_time*+2}.{*filetype*},
+
 {*path_to_storm*}/\*{*sim_time*+3}.{*filetype*}.
-The output time length between output times of the storm should be specified by the input *storm_delt* with units of seconds. It is currently not possible for trajectory model simulations to skip over storm output times during trajectory computation. If a value of *storm_delt* is provided that does not correspond to subsequent output times,  storm evolution will not be correctly simulated.
+
+The output time length between output times of the storm should be specified by the input *storm_delt* with units of seconds. It is currently not possible for trajectory model simulations to skip over storm output times during trajectory computation. If a value of *storm_delt* is provided that does not correspond to subsequent output times, storm evolution will not be correctly simulated.
 
 ### File Format and Contents
 Each storm dataset must contain the following variables:
@@ -110,6 +116,10 @@ If pressure or dry air density is missing, the user should calculate the field a
 If rain drop number concentration is missing, the user may combine the cloud water and rain water mixing ratio fields into the cloud water mixing ratio field only. Then arrays of zeros may be passed in for rain water mixing ratio and number concentration. Similary, if rain drops do not exist as a separate liquid hydrometeor species, arrays of zeros may be passed in for rain water mixing ratio and number concentration. This solution is not recommended, but may be done if necessary. In this case, all storm water will be treated as cloud water, with collection efficiencies following that expected for cloud droplets and with assumed fall speed relative to the air stream = 0 m/s for all cloud water.
 
 All other variable fields are required and the model will not function correctly if they are not provided.
+
+### Storm Reference Frame
+
+It is generally best practice to transform the storm fields into a storm-relative reference frame for hail trajectory calculations, particularly if using static storm fields or storm fields with a relatively long output timestep (e.g., *storm_delt* > 1 min). To transform storm winds into a storm-relative reference frame, storm motion should be removed from the u- and v-wind components. For an evolving storm with sufficiently high resolution temporal output, (e.g., *storm_delt*→*delt*), any reference frame should be sufficient to produce realistic trajectory calculations.
 
 ### Surface inflow air density
 
