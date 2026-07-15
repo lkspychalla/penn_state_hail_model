@@ -121,9 +121,13 @@ All other variable fields are required and the model will not function correctly
 
 It is generally best practice to transform the storm fields into a storm-relative reference frame for hail trajectory calculations, particularly if using static storm fields or storm fields with a relatively long output timestep (e.g., *storm_delt* > 1 min). To transform storm winds into a storm-relative reference frame, storm motion should be removed from the u- and v-wind components. For an evolving storm with sufficiently high resolution temporal output, (e.g., *storm_delt*→*delt*), any reference frame should be sufficient to produce realistic trajectory calculations.
 
-### Surface inflow air density
+### Surface Inflow Air Density
 
 The input parameter *sfcdens* defines the air density at the ground within the inflow air. By default, the dry air density at the ($z_i=0$, $y_i=0$, $x_i=-1$) location in the initial storm dataset file is used as the dry air density of the surface inflow. *sfcdens* may optionally be provided by the user. If the density value at this corner is not appropriate for defining the inflow surface dry air density, an appropriate value may be provided by the user in the input *sfcdens*, which should have units of \[kg m⁻³\] and should be within the range (0.9, 1.3) kg m⁻³.
+
+### Example Storm File
+
+An example storm file is provided here for reference and testing. This storm snapshot is of a supercell storm, simulated in Cloud Model 1 (CM1), and provided in an updraft-centered reference frame. The filename is 'storm_data_001.nc'.
 
 ## Trajectory Model Output
 
@@ -247,7 +251,7 @@ The model integration timestep $$\Delta t$$ = 1 s by default. A timestep of 1 s 
 
 The maximum total trajectory model compute time may be set through *total_t*, which defines the maximum length of time a hailstone's trajectory will be computed in \[s\]. By default, the maximum integration time is set to 3601 s = 1 hr. It is very common for a small subset of hail trajectories to remain aloft after this integration time limit. Increasing the integration time limit can allow more of the trajectories to terminate by melting or exiting the domain. However, increasing the integration time limit will also increase the length of the trajectory model time series output and the needed storage/RAM.
 
-If all hail trajectories terminate before the integration time limit is reached, the main funnction will stop and will return the trajectories through the final timestep that any hailstone was aloft. Note that this can result in different lengths of trajectory output time series: If one trajectory simulations terminates after 2000 s and another terminates after 2400 s, their outputs will have different shapes (assuming *full_record_interval* = 1, (n_traj, 2000) vs. (n_traj, 2400)).
+If all hail trajectories terminate before the integration time limit is reached, the main function will stop and will return the trajectories through the final timestep that any hailstone was aloft. Note that this can result in different lengths of trajectory output time series: For example, given one trajectory simulation that terminates after 2000 s and another that terminates after 2400 s, their outputs will have different shapes (assuming *full_record_interval* = 1, (n_traj, 2000) vs. (n_traj, 2400)).
 
 ### Random Seed
 
@@ -261,9 +265,9 @@ When running the hail trajectory model, the user is able to choose parameterizat
 #### Hailstone Shape Parameterization
 All model configurations assume ellipsoidal hailstones. Here, *choose_shape* defines the relationship between the simulated hailstones' maximum, intermediate, and minimum dimensions.
 - *choose_shape* = 0: Spherical Hailstones (i.e., $D_\mathrm{max}$ = $D_\mathrm{int}$ = $D_\mathrm{min}$).
-- *choose_shape* = 1: Hailstone shapes following the maximum dimension-equivalent volume spherical diameter reltaionship of Shedd et al. (2021) with a fixed intermediate ratio.
+- *choose_shape* = 1: Hailstone shapes following the maximum dimension-equivalent volume spherical diameter relationship of Shedd et al. (2021) with a fixed intermediate ratio.
 - *choose_shape* = 2: Hailstone shapes following the maximum dimension-aspect ratio relationship of Heymsfield et al. (2018) with a fixed intermediate ratio.
-- *choose_shape* = 3: Hailstone shapes following the maximum dimension-equivalent volume spherical diameter reltaionship of Shedd et al. (2021) and the maximum dimension-aspect ratio relationship of Heymsfield et al. (2018).
+- *choose_shape* = 3: Hailstone shapes following the maximum dimension-equivalent volume spherical diameter relationship of Shedd et al. (2021) and the maximum dimension-aspect ratio relationship of Heymsfield et al. (2018).
 
 **Default: choose_shape = 1**
 
