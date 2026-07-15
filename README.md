@@ -18,6 +18,15 @@ To run the model, a user will provide the initial conditions of the hail embryos
 
 An example script to run the hail model is provided in run_hail_trajectories.py and is provided at the bottom of this document.
 
+## Citing Reserach Performed with the Trajectory Model
+
+When publishing reserach performed with this version of the trajectory model, please cite the following DOI:  10.5281/zenodo.21382591 (https://doi.org/10.5281/zenodo.21382592).
+
+Additionally, please cite the following papers to reference the model:
+- Kumjian, M. R., and K. Lombardo, 2020: A Hail Growth Trajectory Model for Exploring the Environmental Controls on Hail Size: Model Physics and Idealized Tests. J. Atmos. Sci., 77, 2765–2791, https://doi.org/10.1175/JAS-D-20-0016.1.
+- Lin, Y., M. R. Kumjian, J. Soderholm, and I. Giammanco, 2024: Modeling Nonspherical Hailstones. J. Atmos. Sci., 81, 1849–1881, https://doi.org/10.1175/JAS-D-23-0231.1.
+- Spychalla, L. K., M. R. Kumjian, K. Lombardo, and Y. Lin: Updated Hail Growth Physics for Lagrangian Hail Trajectory Modeling, (in prep).
+
 ## Hail Embryo Initial Conditions
 
 Hail trajectories are computed for hail embryos specified by the user. The trajectory model **main** function requires five hail embryo input arrays:
@@ -28,7 +37,7 @@ Hail trajectories are computed for hail embryos specified by the user. The traje
   - Note that *init_diam* is assumed to be the equivalent volume spherical diameter of the hailstone at the first timestep. Depending on *choose_shape*, *init_diam* may or may not be exactly equal to any of $D_\mathrm{max}$, $D_\mathrm{int}$, or $D_\mathrm{min}$. In many cases, *init_diam* will be less than $D_\mathrm{max}$ at the first timestep.
 - *init_rho*: (1D float array) hail embryo initial ice core density \[kg m⁻³\]
 
-Hail embryos may be manually chosen and provided by the user. The trajectory model module also contains a collection of functions to fascilitate embryo specification. See individual function documentation for more details on each particular sampling function.
+The hail embryo initial conditions listed above may be manually chosen and provided by the user. The trajectory model module also contains a collection of functions to fascilitate embryo specification. See individual function documentation for more details on each particular sampling function.
 
 Functions to fascilitate embryo location sampling:
 - To sample embryo locations from a random uniform distribution within a provided bounding box: **sample_locations_box**
