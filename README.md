@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# penn_state_hail_model
 
-=======
->>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 # Hail Trajectory and Growth Model
 ## Overview
 

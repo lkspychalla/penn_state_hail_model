@@ -1,6 +1,9 @@
 """
 
-The following script will compute hail trajectories in a storm dataset stored at 'path_to_storm_simulation/storm_data_*.nc' and will save output to 'path_to_save/trajectories.nc'. An example to compute trajectories in the first static storm time is shown first followed by the code to compute trajectories in the evolving storm.
+The following script will compute hail trajectories in a storm dataset stored at 
+'path_to_storm_simulation/storm_data_*.nc' and will save output to 'path_to_save/trajectories.nc'. 
+An example to compute trajectories in the first static storm time is shown first followed by the 
+code to compute trajectories in the evolving storm.
 
 
 By Lydia Spychalla
