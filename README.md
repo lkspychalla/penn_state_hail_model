@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 # penn_state_hail_model
 
+=======
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 # Hail Trajectory and Growth Model
 ## Overview
 
@@ -106,7 +109,11 @@ All other variable fields are required and the model will not function correctly
 
 ### Surface inflow air density
 
+<<<<<<< HEAD
 The input parameter *sfcdens* defines the air density at the ground within the inflow air. By default, the dry air density at the ($z_i$=0,$y_i$=0,$x_i$=-1) location in the initial storm dataset file is used as the dry air density of the surface inflow. *sfcdens* may optionally be provided by the user. If the density value at this corner is not appropriate for defining the inflow surface dry air density, an appropriate value may be provided by the user in the input *sfcdens*, which should have units of \[kg m$^{-3}$\] and should be within the range (0.9, 1.3) kg m$^{-3}$.
+=======
+The input parameter *sfcdens* defines the air density at the ground within the inflow air. By default, the dry air density at the ($z_i=0$,$y_i=0$,$x_i=-1$) location in the initial storm dataset file is used as the dry air density of the surface inflow. *sfcdens* may optionally be provided by the user. If the density value at this corner is not appropriate for defining the inflow surface dry air density, an appropriate value may be provided by the user in the input *sfcdens*, which should have units of \[kg m$^{-3}$\] and should be within the range (0.9, 1.3) kg m$^{-3}$.
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 
 ## Trajectory Model Output
 
@@ -181,6 +188,7 @@ The recommended *final_record_list* = \['x', 'y', 'z', 'D_max', 'D_int', 'D_min'
 Outputting the full time series record of hail trajectory quantities should be done sparingly! Increasing the number of output variables will greatly increase the needed RAM for computing trajectories and will greatly increase the needed storage to save trajectory output. Note that many model variables can be calculated from a smaller subset (e.g., volume  may be calculated from rho_ice and m_core). The recommended full_record_list should be used unless other full time series variables are specifically needed.
 
 The variables available for full time series output are:
+<<<<<<< HEAD
 - 'x'     : x position \[km\]
 - 'y'     : y position \[km\]
 - 'z'     : z position \[km\]
@@ -200,6 +208,27 @@ The variables available for full time series output are:
 - 'rho_growth': density of new growth at current timestep \[kg m$^{-3}$\]
 - 'vt_hail'   : terminal fall speed \[m s$^{-1}$\]
 - 'vrel_hail' : background wind speed relative to the hailstone's Lagrangian motion \[m s$^{-1}$\]
+=======
+- 'x': x position \[km\]
+- 'y': y position \[km\]
+- 'z': z position \[km\]
+- 'D_max': maximum dimension \[mm\]
+- 'D_int': intermediate dimension \[mm\]
+- 'D_min': minimum dimension \[mm\]
+- 'volume': ellipsoidal volume \[m$^3$\]
+- 'T_core': ice core temperature \[K\]
+- 'T_avg_liq': average liquid shell temperature \[K\]
+- 'T_sfc': outermost surface temperautre \[K\]
+- 'T_inf': background air temperature at hailstone location \[K\]
+- 'm_core': mass of ice core \[kg\]
+- 'm_soaked': mass of soaked liquid \[kg\]
+- 'm_shell': mass in liquid shell \[kg\]
+- 'rho_ice': density of the ice core \[kg m$^{-3}$\]
+- 'rho_tot': soaked hailstone density (ice core + soaked mass) \[kg m$^{-3}$\]
+- 'rho_growth': density of new growth at current timestep \[kg m$^{-3}$\]
+- 'vt_hail': terminal fall speed \[m s$^{-1}$\]
+- 'vrel_hail': background wind speed relative to the hailstone's Lagrangian motion \[m s$^{-1}$\]
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 - 'v_rel_x': background x-component wind speed relative to the hailstone's Lagrangian motion \[m s$^{-1}$\]
 - 'v_rel_y': background y-component wind speed relative to the hailstone's Lagrangian motion \[m s$^{-1}$\]
 - 'v_rel_z': background z-component wind speed relative to the hailstone's Lagrangian motion \[m s$^{-1}$\]
@@ -247,19 +276,31 @@ All model configurations assume ellipsoidal hailstones. Here, *choose_shape* def
 - *choose_shape* = 1: Hailstone shapes following the maximum dimension-equivalent volume spherical diameter reltaionship of Shedd et al. (2021) with a fixed intermediate ratio.
 - *choose_shape* = 2: Hailstone shapes following the maximum dimension-aspect ratio relationship of Heymsfield et al. (2018) with a fixed intermediate ratio.
 - *choose_shape* = 3: Hailstone shapes following the maximum dimension-equivalent volume spherical diameter reltaionship of Shedd et al. (2021) and the maximum dimension-aspect ratio relationship of Heymsfield et al. (2018).
+<<<<<<< HEAD
 **Default: *choose_shape* = 1**
+=======
+**Default: choose_shape = 1**
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 
 #### Aspect Ratio Percentile for Heysmfield Aspect Ratios
 Hailstone aspect ratio is equal to the ratio of its minimum dimension and its maximum dimension (assuming ellipsoids). The parameter *choose_aspect* defines the aspect ratio parameterization, and is only used when *choose_shape* is in {2,3} (i.e., when using the maximum dimension-aspect ratio relationship from Heymsfield et al. 2018).
 - *choose_aspect* = 0: Each hailstone's aspect ratio relationship will be chosen at random from the 0.1-0.9 quantile relationships (incrementing every 0.05).
 - *choose_aspect* in range (0,1): All hailstones will use the same maximum dimension-aspect ratio relationship, specified by the nearest 0.05 quantile, with minimum quantile = 0.1 and maximum quantile = 0.9 (e.g., for *choose_aspect* = 0.76, all hailstones will use the 75th percentile maximum dimension-aspect ratio relationship; for *choose_aspect* = 0.02, all hailstones will use the 10th percentile maximum dimension-aspect ratio relationship; for *choose_aspect* = 0.5, all hailstones will use the 50th percentile maximum dimension-aspect ratio relationship).
+<<<<<<< HEAD
 **Default: *choose_aspect* = 0**
+=======
+**Default: choose_aspect = 0**
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 
 #### Intermediate Ratio 
 The intermediate ratio is the ratio of a hailstone's intermediate dimension to its maximum dimension (assuming ellipsoids). The parameter *choose_int_ratio* specifies the intermediate ratio for the hailstones, and is only used when *choose_shape* is in {1,2} (i.e., when using a fixed intermediate ratio).
 - *choose_int_ratio* = 0: A random intermediate ratio is chosen for each individual hailstone uniformly from the range \[0.8, 0.9\].
 - *choose_int_ratio* in range (0,1\]: Intermediate ratios equal *choose_int_ratio* for all hailstones. Note that the intermediate ratio is bounded by the aspect ratio and unity within the hail model. If a *choose_int_ratio* is given that does not maintain these relationships, the intermediate ratio will change to compensate. In this case, the model will continue to work fine and should produce no unrealistic behavior. Nevertheless, a *choose_int_ratio* value between 0.8 and 0.9 is recommended if this option is used.
+<<<<<<< HEAD
 **Default: *choose_int_ratio* = 0**
+=======
+**Default: choose_int_ratio = 0**
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 
 #### Terminal Fall Speeds
 The relationship between hailstone size and hailstone fall speed is specified by *choose_vt* and is parameterized either by maximum dimension only (*choose_vt* in range [0,1)) or by mass and shape (*choose_vt* in {1,2}).
@@ -267,7 +308,11 @@ The relationship between hailstone size and hailstone fall speed is specified by
 - *choose_vt* in range (0,1): Manually specified fall speed-maximum dimension relationship from Heymsfield et al. (2020). The given *choose_vt* value is rounded to the nearest 0.05 to choose the quantile relationship for all hailstones (maximum quantile = 0.9, minimum quantile = 0.1).
 - *choose_vt* = 1: Spherical fall speed relationship derived from a balance between drag and gravitational forces. Maximum dimension is assumed to be the spherical diameter for this equation. Using this option for non-spherical hailstones will generally overestimate realistic hailstone fall speeds.
 - *choose_vt* = 2: Non-spherical fall speed relationship derived from a balance between drag and gravitational forces.
+<<<<<<< HEAD
 **Default *choose_vt* = 2**
+=======
+**Default choose_vt = 2**
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 
 #### Drag coeff
 Hailstone drag coefficient and Reynolds Numbers are calculated together according to *choose_drag*. For *choose_drag* in {0,1}, the input parameter *Cdrag* is used as the constant value for drag coefficient. The recommended value for *Cdrag* is 0.58, which is the function's default.
@@ -277,13 +322,21 @@ Hailstone drag coefficient and Reynolds Numbers are calculated together accordin
 - *choose_drag* = 3: Drag coefficient solved iteratively with the Reynolds Number following Clift and Gauvin (1971). Note that these drag coefficients are generally smaller than realistic hailstone drag coefficients for all hailstone sizes.
 - *choose_drag* = 4: Drag coefficient solved iteratively with the Reynolds Number following Bagheri and Bardonna (2016). Note that these drag coefficients are generally far greater than realistic hailstone drag coefficients for all hail sizes.
 - *choose_drag* = 5: Drag coefficient solved with the parameterization of Theis et al. (2026) for a variety of natural hailstones depending on their sphericity and maximum dimension. Reynolds Number is solved via the Best Number. This is the recommended drag and Reynolds Number parameterization.
+<<<<<<< HEAD
 **Default: *choose_drag* = 5**
+=======
+**Default: choose_drag = 5**
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 
 #### Hailstone lobes 
 Hailstones in the model are assumed to be smooth ellipsoids unless *choose_lobes* = 1 is specified. Note that hailstone lobiness has been included following Lin et al. (2024); however, updates to the model from Spychalla et al. (in prep) have not comprehensively changed and/or added lobe adjustments to any changed hail growth physics.  Users should beware that lobeiness has not been carefully checked for correctness in the newest model version. For this reason we recommend running the trajectory model without lobes.
 - *choose_lobes* = 0: No parameterized hailstone lobes.
 - *choose_lobes* = 1: A lobes adjustment parameter is used to modify the total heat transfer by modifying hailstone surface area and to modify the drag coefficient for choose_drag parameterizations in \[1,2,3\] following the expected impact of lobes to hailstone heat transfer and fall speed (Lin et al. 2024).
+<<<<<<< HEAD
 **Default: *choose_lobes* = 0**
+=======
+**Default: choose_lobes = 0**
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 
 #### Hailstone tumble mode
 Hailstone tumbling may be turned on or off by *choose_tumble*. From Lin et al. (2024), running the hail model with non-spherical hailstone shapes without tumbling is likely to produce erroneously large hail sizes. Tumbling should be turned on unless spherical hailstones are manually specified.
@@ -291,7 +344,11 @@ Hailstone tumbling may be turned on or off by *choose_tumble*. From Lin et al. (
 - *choose_tumble* in range (0,1): Fixed adjustment from hailstone tumbling. The given *choose_tumble* is used as a fixed muliplier on hailstone cross-sectional area. Note that *choose_tumble*$\rightarrow$0 are quite unrealistic and should not be used.
 - *choose_tumble* = 0: No hailstone tumbling. Hailstones are assumed to fall with their largest cross-sectional area normal to their fall direction. Note that this choice will generally overestimate hailstone collection of liquid water and is not recommended.
 **Note that *choose_tumble* = \{0,1\} have been flipped since their original implementation!**
+<<<<<<< HEAD
 **Default: *choose_tumble* = 1**
+=======
+**Default: choose_tumble = 1**
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
   
 If *choose_tumble* = 1 (default tumbling mode for explicit hailstone tumbling), the tumbling lookup table must be provided. This tumbling file tumblerand.mat is provided here with the model source code. This tumbling file should be discoverable by the hail model with the path to the tumbling file defined by the input parameter *tumbling_file* to the **main** function. Note that the function **tumbling_parameterization** is hard coded to specifically sample the provided tumblerand.mat file. **Swapping out this tumbling file for another requires a complete rewritting of the tumbling_parameterization function.**
 
@@ -299,7 +356,11 @@ If *choose_tumble* = 1 (default tumbling mode for explicit hailstone tumbling), 
 Hailstone inertial adjustment may be turned on or off by *choose_inertia*. Note that if no spatial interpolation is used, computing hail trajectories with inertia is not recommended. As long as linear interpolation is used (default), inertial adjustment is recommended.
 - *choose_inertia* = 1: Hailstone motions are calculated with physical inertial adjustment to changing background winds following Kumjian et al. (2025).
 - *choose_inertia* = 0: Hailstone motions assume instantaneous adjustment to their background winds (no inertia).
+<<<<<<< HEAD
 **Default: *choose_inertia* = 1**
+=======
+**Default: choose_inertia = 1**
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 
 #### Heat transfer coefficient
 The parameterization of $\chi$, which is used by Macklin (1963) and Rasmussen and Heymsfield (1987) to modify heat transfer processes corresponding to a hailstone's aspect ratio may be chosen by *choose_chi*. 
@@ -312,7 +373,11 @@ The liquid shell temperature assumes an equilibrium profile for thermal conducti
 - *choose_shell_T* = 0: All liquid shell mass is forced to have temperature $T_0$ = 273.15 K in all growth/melting regimes. This option generally produces too much wet-growth freezing and too much melting and is not recommended.
 - *choose_shell_T* = 1: All heat transfer is calculated using the average temperature of the liquid shell.
 - *choose_shell_T* = 2: Heat transfer processes are calculated using the nearest boundary temperature for the liquid shell. Melting, freezing, and soaking are calculated with the internal boundary temperature $T = T_0$. Accretion, conduction, and diffusion are calculated with the surface boundary temperature $T = T_\mathrm{sfc}$.
+<<<<<<< HEAD
 **Default: *choose_shell_T* = 1**
+=======
+**Default: choose_shell_T = 1**
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
 
 #### Depreciated Parameterizations
 - *choose_D*: The parameter *choose_D* used to be available to specify the Heymsfield et al. (2018) relationship used to specify hail embryo sizes. During the 2026 rewrite, hail embryo size was modified to be a model input.
@@ -322,6 +387,10 @@ The liquid shell temperature assumes an equilibrium profile for thermal conducti
 
 The following script will compute hail trajectories in a storm dataset stored at 'path_to_storm_simulation/storm_data_*.nc' and will save output to 'path_to_save/trajectories.nc'. An example to compute trajectories in the first static storm time is shown first followed by the code to compute trajectories in the evolving storm.
 
+<<<<<<< HEAD
+=======
+    ```
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
     import trajectory_model as model
     
     
@@ -369,3 +438,8 @@ The following script will compute hail trajectories in a storm dataset stored at
                            output_path   = output_path  , 
                            evolving      = True         , 
                            storm_delt    = 300          , ) # 300 s = 5 min
+<<<<<<< HEAD
+=======
+    
+    ```
+>>>>>>> 874ba670000216d2f83076fcd92de9dc07e15f22
