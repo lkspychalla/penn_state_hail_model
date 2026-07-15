@@ -331,7 +331,7 @@ The liquid shell temperature assumes an equilibrium profile for thermal conducti
 
 The following script will compute hail trajectories in a storm dataset stored at 'path_to_storm_simulation/storm_data_*.nc' and will save output to 'path_to_save/trajectories.nc'. An example to compute trajectories in the first static storm time is shown first followed by the code to compute trajectories in the evolving storm.
 
-    ```
+
     import trajectory_model as model
     
     
@@ -380,4 +380,3 @@ The following script will compute hail trajectories in a storm dataset stored at
                            evolving      = True         , 
                            storm_delt    = 300          , ) # 300 s = 5 min
     
-    ```
