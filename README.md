@@ -370,7 +370,7 @@ The following script will compute hail trajectories in a storm dataset stored at
     n_traj = 10000
     
     # Sample hail embryo locations
-    init_z, init_y, init_x = model.sample_locations_box(n_traj=n_traj, xmin=-10, xmax=10, ymin=-10, ymax=10, zmin=4, zmax=10,)
+    init_x, init_y, init_z = model.sample_locations_box(n_traj=n_traj, xmin=-10, xmax=10, ymin=-10, ymax=10, zmin=4, zmax=10,)
     
     # Sample hail embryo sizes
     init_diam  = model.sample_sizes_gamma(n_traj=n_traj, mean_size=7.5, D0_min=2, D0_max=10)
