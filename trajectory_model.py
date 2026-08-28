@@ -50,7 +50,7 @@ def define_constants():
     lf       = 3.33e5    # enthalpy of fusion/melting                 [J/kg]    **ADD EXPRESSIONS TO MAKE MORE ACCURATE
     ls       = lv+lf     # enthalpy of sublimation                    [J/kg]    *****
     rhol     = 1000.0    # density of liquid water                  [kg/m^3]
-    rhosolid =  917.0    # density of solid ice                     [kg/m^3]
+    rhosolid = 917.0     # density of solid ice                     [kg/m^3]
     es0      = 611.0     # equilibrium vapor pressure at T=T0=273.15 K  [Pa]
     
     
@@ -887,7 +887,7 @@ def find_transport_fraction(r_liq, r_ice, r1, r2):
         # If there is a liquid shell, ramp up to full liquid conduction between shell thickness of r1 and r2. 
         # Thinner shells than r1, should have full transfer of external physics to the ice core
         # Thicker shells than r2, should have full thermal conduction through the liquid shell
-        transport_fraction = np.where((shell_thickness <= r2) & (shell_thickness >= r1), 0.5 + 0.5*np.sin(np.pi*((r1+r2)/2 + shell_thickness)/(r2-r1)), (shell_thickness < r1).astype(float))
+        transport_fraction = np.where((shell_thickness <= r2) & (shell_thickness >= r1), 0.5 + 0.5*np.sin(np.pi*((r1+r2)/2 - shell_thickness)/(r2-r1)), (shell_thickness < r1).astype(float))
         
     return transport_fraction
 
